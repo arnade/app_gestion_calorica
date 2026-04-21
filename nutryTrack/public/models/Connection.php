@@ -1,7 +1,7 @@
 <?php
 
 class Connection{
-    protected $conn; //Tipo objeto PDO
+    protected $conn;
     private $configFile = "conf.json";
 
     public function __construct()
@@ -44,4 +44,3 @@ class Connection{
         $this->conn = null;
     }
 }
-    //FIN DE LA CONEXIÓN
