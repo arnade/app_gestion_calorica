@@ -1,12 +1,24 @@
 <?php
 
 class Connection{
+
+    private static $instance = null;
     protected $conn;
     private $configFile = "conf.json";
 
-    public function __construct()
+    private function __construct()
     {
         $this->makeConnection();
+    }
+
+    public static function getInstance() {
+
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+
     }
 
     private function makeConnection()
@@ -42,5 +54,9 @@ class Connection{
     public function __destruct()
     {
         $this->conn = null;
+    }
+
+    private function __clone()
+    {
     }
 }
