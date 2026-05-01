@@ -17,6 +17,27 @@ class Register {
         $this->id=$id;
     }
 
+    public function calculateProteins(){
+        $totalProteins= ($this->recipe->getProteins() * $this->grams)/100 ;
+        return $totalProteins; 
+    }
+
+    public function calculateCarbs(){
+        $totalCarbs= ($this->recipe->getCarbs() * $this->grams)/100 ;
+        return $totalCarbs; 
+    }
+
+    public function calculateFats(){
+        $totalFats= ($this->recipe->getFats() * $this->grams)/100 ;
+        return $totalFats; 
+    }
+
+        public function calculateKcals(){
+        $totalKcals= ($this->recipe->getKcals() * $this->grams)/100 ;
+        return $totalKcals; 
+    }
+
+
     /**
      * Get the value of id
      */
