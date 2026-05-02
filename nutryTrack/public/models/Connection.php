@@ -56,7 +56,14 @@ class Connection{
         $this->conn = null;
     }
 
+
+    // evitar clonar
     private function __clone()
     {
+    }
+
+        //evitar que se pueda deserializar , seguridad extra 
+    public function __wakeup(){
+        throw new \Exception("No puedes deserializar una instancia de Connection.");
     }
 }

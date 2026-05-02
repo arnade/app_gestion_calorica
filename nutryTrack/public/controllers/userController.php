@@ -45,7 +45,7 @@ class UserController {
             }
         }
 
-        include "views/alta.php";
+        include "views/signup.php";
     }
 
     public function login() {
@@ -53,7 +53,7 @@ class UserController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $email = $_POST['email'];
-            $username = $_POST['username'];
+            $username = $_POST['username']; 
             $password = $_POST['password'];
             $recordar = isset($_POST['recordarme']);
 

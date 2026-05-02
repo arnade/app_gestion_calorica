@@ -4,16 +4,17 @@ class Register {
 
     
     protected $id;
-    protected $user_id;
+    protected $user;
     protected $recipe;
     protected $date;
     protected $grams; 
 
-    public function __construct($user_id, $recipe, $date, $grams, $id=0){
-        $this->user_id=$user_id;
+    public function __construct($recipe, $date, $grams, $user = null,  $id=0){
+        
         $this->recipe=$recipe;
         $this->date=$date;
         $this->grams=$grams;
+        $this->user=$user;
         $this->id=$id;
     }
 
@@ -37,96 +38,64 @@ class Register {
         return $totalKcals; 
     }
 
+    public function getUserId(){
+        $userId = $this->user->getId();
+        return $userId;
+    }
 
-    /**
-     * Get the value of id
-     */
-    public function getId()
-    {
+    public function getRecipeId(){
+        $recipeId = $this->recipe->getId();
+        return $recipeId;
+    }
+
+    public function getRecipeName(){
+        $recipeName= $this->recipe->getName();
+        return $recipeName;
+    }
+
+    public function getId(){
         return $this->id;
     }
 
-    /**
-     * Set the value of id
-     */
-    public function setId($id): self
-    {
+    public function setId($id){
         $this->id = $id;
-
         return $this;
     }
 
-    /**
-     * Get the value of user_id
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * Set the value of user_id
-     */
-    public function setUserId($user_id): self
-    {
-        $this->user_id = $user_id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of recipe
-     */
-    public function getRecipe()
-    {
+    public function getRecipe(){
         return $this->recipe;
     }
 
-    /**
-     * Set the value of recipe
-     */
-    public function setRecipe($recipe): self
-    {
+    public function setRecipe($recipe){
         $this->recipe = $recipe;
-
         return $this;
     }
 
-    /**
-     * Get the value of date
-     */
-    public function getDate()
-    {
+    public function getDate(){
         return $this->date;
     }
 
-    /**
-     * Set the value of date
-     */
-    public function setDate($date): self
-    {
+    public function setDate($date){
         $this->date = $date;
-
         return $this;
     }
 
-    /**
-     * Get the value of grams
-     */
-    public function getGrams()
-    {
+    public function getGrams(){
         return $this->grams;
     }
 
-    /**
-     * Set the value of grams
-     */
-    public function setGrams($grams): self
-    {
+    public function setGrams($grams){
         $this->grams = $grams;
-
         return $this;
     }
-    
+
+    public function getUser(){
+        return $this->user;
+    }
+
+    public function setUser($user){
+        $this->user = $user;
+        return $this;
+    }
 
 }
