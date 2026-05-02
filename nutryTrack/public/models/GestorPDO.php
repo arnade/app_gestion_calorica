@@ -8,35 +8,54 @@ class GestorPDO {
         $this->db = Connection::getInstance()->getConn();
     }
 
-    public function listar(){
-    $consulta="SELECT * FROM REGISTERS";
-    $rtdo=$this->db->query($consulta);
-    $arrayRegistros=[];
-    while ($value = $rtdo->fetch(PDO::FETCH_ASSOC)){
-        $receta=$this->gestor->buscarReceta($value['recipe_id']);
-        $registro = new Register($receta, $value['date'], $value['grams'], $usuario, $value['id']);
-        $arrayRegistros[]=$registro;
-    }
-    return $arrayRegistros;
-    }
+   
 
-    public function buscarReceta($id){
+    public function buscarRecetaId($id){
           $sql = "SELECT * FROM RECIPES WHERE id = :id LIMIT 1";
 
         $stmt = $this -> db -> prepare($sql);
-        $stmt -> bindvalue(':id', $id);
+        $stmt -> bindValue(':id', $id, PDO::PARAM_INT);
         $stmt -> execute();
 
         $value = $stmt -> fetch (PDO::FETCH_ASSOC);
 
         if ($value) {
-            return new Recipe($value['name'], $value['proteins'], $value['carbs'], $value['fats'], $value['kcals'], $value['id']);
+            return new Recipe($value['NAME'], $value['PROTEINS'], $value['CARBS'], $value['FATS'], $value['KCALS'], $value['ID']);
         }
 
         return false;
 
     }
 
+        public function buscarUsuarioId($id){
+          $sql = "SELECT * FROM USUARIOS WHERE id = :id LIMIT 1";
+
+        $stmt = $this -> db -> prepare($sql);
+        $stmt -> bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt -> execute();
+
+        $value = $stmt -> fetch (PDO::FETCH_ASSOC);
+
+        if ($value) {
+            return new User($value['EMAIL'], $value['USERNAME'], $value['ID']);
+        }
+
+        return false;
+
+    }
+
+    public function listar(){
+        $consulta="SELECT * FROM REGISTERS";
+        $rtdo=$this->db->query($consulta);
+        $arrayRegistros=[];
+        while ($value = $rtdo->fetch(PDO::FETCH_ASSOC)){
+            $receta=$this->buscarRecetaId($value['RECIPE_ID']);
+            $usuario=$this->buscarUsuarioId($value['USER_ID']);
+            $registro = new Register($receta, $value['DATE'], $value['GRAMS'], $usuario, $value['ID']);
+            $arrayRegistros[]=$registro;
+        }
+        return $arrayRegistros;
+        }
 
     public function registrarUsuario(User $user) {
 
@@ -68,7 +87,7 @@ class GestorPDO {
         $value = $stmt -> fetch (PDO::FETCH_ASSOC);
 
         if ($value) {
-            return new User($value['email'], $value['username'], $value['password'], $value['id']);
+            return new User($value['EMAIL'], $value['USERNAME'], $value['PASSWORD'], $value['ID']);
         }
 
         return false;

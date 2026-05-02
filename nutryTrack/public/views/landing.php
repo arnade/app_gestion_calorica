@@ -23,8 +23,8 @@
     <table border="1" cellpadding="10">
         <tr>
             <th>Registro</th>
-            <th>Comida</th> 
-            <th>Fecha</th>
+            <th>Fecha</th> 
+            <th>Comida</th>
             <th>Gramos</th>
             <th>Total Proteínas</th>
             <th>Total Carbos</th>
@@ -37,6 +37,7 @@
         <?php foreach ($registros as $p): ?>
         <tr>
             <td><?= $p->getId() ?></td>
+            <td><?= $p->getDate() ?></td>
             <td><?= $p->getRecipeName() ?></td>
             <td><?= $p->getGrams() ?></td>
             <td><?= $p->calculateProteins() ?></td>

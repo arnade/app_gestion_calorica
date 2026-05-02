@@ -13,7 +13,10 @@
     <form method="POST">
         Email:<br>
         <input type="email" name="email" required><br><br>
-        
+         
+        Username:<br>
+        <input type="text" name="username" required><br><br>
+
         Contraseña:<br>
         <input type="password" name="password" required><br><br>
         <input type="checkbox" name="recordarme"> Recordarme en este equuipo. <br><br>
