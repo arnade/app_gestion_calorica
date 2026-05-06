@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Iiniciar Sesión</title>
-</head>
-<body>
-    <h1>Iniciar Sessión</h1>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NutryTrack</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="icon" type="image/png" href="img/favicon.png">
+    </head>
+    <body>
+       <p class="pagTitus">Iniciar Sesión</p>
     
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><b>Error:</b><?= $error ?></p>
-    <?php endif; ?>
+       <?php if (isset($error)): ?>
+           <p style="color: red;"><b>Error:</b><?= $error ?></p>
+       <?php endif; ?>
 
-    <form method="POST">
-        Email:<br>
-        <input type="email" name="email" required><br><br>
-        
-        Contraseña:<br>
-        <input type="password" name="password" required><br><br>
-        <input type="checkbox" name="recordarme"> Recordarme en este equuipo. <br><br>
-        <button type="submit">Entrar</button>
-    </form>
+       <form method="POST" class="formularios">
+           <input type="email" class="inputs" name="email" placeholder="Email..." onfocus="this.placeholder=''" onblur="this.placeholder='Email...'" required>
+           <input type="password" class="inputs" name="password" placeholder="Contraseña..." onfocus="this.placeholder=''" onblur="this.placeholder='Contraseña...'" required>
+           <nav class="checkboxes">
+                <button type="submit">Entrar</button>
+                <div>
 
-    <br>
-    <p>¿No tiene una cuenta? <a href="index.php?accion=alta">Regístrate aquí</a></p>
-    <a href="index.php">Volver al inicio</a>
-</body>
+                    <input type="checkbox" name="recordarme" id="recordarme">
+                    <label for="recordarme">Recuérdame</label>
+                </div>
+                
+           </nav>
+       </form>
+
+       <nav class="bajo_login">
+           <p>¿No tienes una cuenta? <a href="index.php?accion=alta">Regístrate aquí</a></p>
+           <a href="index.php">Volver al inicio</a>
+       </nav>
+       <figure>
+            <img src="img/favicon.png" alt="Logo NutryTrack" class="login-image" style="width: 3rem; padding-top:3rem; opacity: 0.8;">
+       </figure>
+    </body>
 </html>
