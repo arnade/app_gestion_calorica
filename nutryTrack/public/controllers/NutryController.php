@@ -9,7 +9,12 @@ class NutryController {
     }
 
     public function index() {
-        $registros = $this->gestor->listar();
+        $registros = [];
+
+        if (isset($_SESSION['usuario_id'])) {
+            $registros = $this->gestor->listar($_SESSION['usuario_id']);
+        }
+
         include "views/landing.php";
     }
 
