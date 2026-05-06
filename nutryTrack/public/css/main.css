@@ -1,0 +1,173 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('fonts/Bebas_Neue/BebasNeue-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto/Roboto-VariableFont_wdth\,wght.ttf') format('truetype');
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    background-color: #4073a0;
+    
+}
+
+
+.tit strong{
+    font: normal 8.1rem roboto, arial !important;
+    color: rgb(230, 230, 230);
+    
+}
+.titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    
+    gap: 0;
+    
+    
+}
+.tit{
+    font: lighter 8rem roboto, arial !important;
+    color: rgb(230, 230, 230);
+    margin: 0px;
+    
+}
+/*Crear medias querys para titulo y bienvenida2*/
+.subtit{
+    text-align: center;
+    font: normal 1.2rem roboto, arial !important;
+    color: rgba(255, 255, 255, 0.533);
+    padding-left: 1rem;
+    letter-spacing: 1rem;
+    opacity: 0.8;
+   
+    
+}
+.flechabajo{
+    
+  font: normal 3rem roboto, arial !important;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  animation: bounce 2s infinite;
+  margin-top: 40px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+  40% {transform: translateX(-50%) translateY(-10px);}
+  60% {transform: translateX(-50%) translateY(-5px);}
+}
+.principal{
+    width: 100%;
+}
+.bienvenida2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+    font: normal 1.5rem roboto, arial;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: #32587a;
+    text-decoration: none;
+    gap: 4vh;
+    
+}
+.bienvenida2 p{
+    margin: 0px;
+    
+}
+.bienvenida2 nav{
+    
+    display: flex;
+    gap: 2rem;
+    
+}
+.bienvenida2 nav a{
+    
+    font: normal 1.5rem roboto, arial;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    
+    
+}
+.bienvenida2 nav a:hover{
+    text-decoration: underline; 
+    text-decoration-thickness: 1px ;
+}
+
+.pagTitus{
+    font: lighter 3rem roboto, arial;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.inputs{
+    
+    font-family: 'roboto',arial,  sans-serif;
+    
+    width: 100%;
+    padding: 1rem 1.2rem; /* El 2em anterior era excesivo */
+    font-size: 1rem;
+    width: 100%;
+    padding: 1rem 1.2rem; /* El 2em anterior era excesivo */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    
+}
+.inputs:focus {
+    outline: none;
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.checkboxes{
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1rem;
+    
+    font-family: 'Roboto', sans-serif;
+    
+    color: rgb(255, 255, 255);
+}
+.formularios{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 20rem;
+    
+    gap: 2rem;
+}
+.bajo_login{
+    margin-top: 3rem; /* Los 200px eran demasiada distancia muerta */
+    font-size: 0.9rem;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+.bajo_login a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: 500;
+}
+.bajo_login a:hover {
+    text-decoration: underline;
+}

@@ -1,25 +1,35 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Registro de Usuario</title>
-</head>
-<body>
-    <h1>Crear nueva cuenta</h1>
-    <form method="POST">
-        Email:<br>
-        <input type="email" name="email" required><br><br>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NutryTrack</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="icon" type="image/png" href="img/favicon.png">
+    </head>
+    <body>
+        <p class="pagTitus">Registrarse</p>
+        <form method="POST" class="formularios">
+           
+            <input type="email" class="inputs" name="email" placeholder="Email..." onfocus="this.placeholder=''" onblur="this.placeholder='Email...'" required>
 
-        Username:<br>
-        <input type="text" name="username" required><br><br>
+            <input type="text" class="inputs" name="username" placeholder="Nombre de usuario..." onfocus="this.placeholder=''" onblur="this.placeholder='Nombre de usuario...'" required>
 
-        Contraseña:<br>
-        <input type="password" name="password" required minlenght="4"><br><br>
+           <input type="password" class="inputs" name="password" placeholder="Contraseña..." onfocus="this.placeholder=''" onblur="this.placeholder='Contraseña...'" required>
+            <nav class="checkboxes">
 
-        <button type="submit">Registrarse</button>
+                <button type="submit">Registrarse</button>
+            </nav>
 
-    </form>
-    <br>
-    <p>¿Ya tienes una cuenta? <a href="index.php?accion=login"></a></p>
-    <a href="index.php">Volver al inicio</a>
-</body>
+        </form>
+        <nav class="bajo_login">
+
+            <p>¿Ya tienes una cuenta? <a href="index.php?accion=login">Inicia sesión aquí</a></p>
+            <a href="index.php">Volver al inicio</a>
+        </nav>
+        <figure>
+            <img src="img/favicon.png" alt="Logo NutryTrack" class="login-image" style="width: 3rem; padding-top:3rem; opacity: 0.8;">
+       </figure>
+    </body>
 </html>
