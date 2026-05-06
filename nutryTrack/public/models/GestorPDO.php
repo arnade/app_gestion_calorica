@@ -8,10 +8,10 @@ class GestorPDO {
         $this->db = Connection::getInstance()->getConn();
     }
 
-    public function listar($userId){
+    public function listar(){
         $consulta = "SELECT * FROM REGISTERS WHERE USER_ID = :user_id";
         $stmt = $this->db->prepare($consulta);
-        $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $_SESSION['usuario_id'], PDO::PARAM_INT);
         $stmt->execute();
 
         $arrayRegistros = [];
@@ -36,7 +36,7 @@ class GestorPDO {
         $value = $stmt -> fetch (PDO::FETCH_ASSOC);
 
         if ($value) {
-            return new Recipe($value['name'], $value['proteins'], $value['carbs'], $value['fats'], $value['kcals'], $value['id']);
+            return new Recipe($value['NAME'], $value['PROTEINS'], $value['CARBS'], $value['FATS'], $value['KCALS'], $value['ID']);
         }
 
         return false;
