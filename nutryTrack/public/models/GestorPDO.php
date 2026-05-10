@@ -9,21 +9,27 @@ class GestorPDO {
     }
 
     public function listar(){
-        $consulta = "SELECT * FROM REGISTERS WHERE USER_ID = :user_id";
-        $stmt = $this->db->prepare($consulta);
-        $stmt->bindValue(':user_id', $_SESSION['usuario_id'], PDO::PARAM_INT);
-        $stmt->execute();
 
-        $arrayRegistros = [];
+        if (isset($_SESSION['usuario_id'])) {
 
-        while ($value = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $receta = $this->buscarRecetaId($value['RECIPE_ID']);
-            $usuario = $this->buscarUsuarioId($value['USER_ID']);
-            $registro = new Register($receta, $value['DATE'], $value['GRAMS'], $usuario, $value['ID']);
-            $arrayRegistros[] = $registro;
+            $consulta = "SELECT * FROM REGISTERS WHERE USER_ID = :user_id";
+            $stmt = $this->db->prepare($consulta);
+            $stmt->bindValue(':user_id', $_SESSION['usuario_id'], PDO::PARAM_INT);
+            $stmt->execute();
+
+            $arrayRegistros = [];
+
+            while ($value = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $receta = $this->buscarRecetaId($value['RECIPE_ID']);
+                $usuario = $this->buscarUsuarioId($value['USER_ID']);
+                $registro = new Register($receta, $value['DATE'], $value['GRAMS'], $usuario, $value['ID']);
+                $arrayRegistros[] = $registro;
+            }
+
+            return $arrayRegistros;
+
         }
-
-        return $arrayRegistros;
+        
     }
 
     public function buscarRecetaId($id){
