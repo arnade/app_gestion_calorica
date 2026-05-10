@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>Registrar comida</title>
+         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
 <body>
     <h1>Registrar comida</h1>

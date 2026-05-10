@@ -171,3 +171,7 @@ body{
 .bajo_login a:hover {
     text-decoration: underline;
 }
+
+table{
+    background-color: white;
+}
