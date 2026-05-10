@@ -228,3 +228,68 @@ table tr td a:hover{
     opacity: 0.8;
     
 }
+
+/* Telefonos grandes */
+@media (max-width: 768px) {
+    .tit strong, .tit {
+        font-size: 4rem !important; /* Reducimos el título gigante */
+    }
+
+    .subtit {
+        font-size: 1rem !important;
+        letter-spacing: 0.5rem; /* Menos espacio entre letras para que no se corte */
+        padding-left: 0.5rem;
+    }
+
+    .bienvenida2 {
+        padding: 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .bienvenida2 nav {
+        flex-direction: column; /* Apilamos los enlaces si son muchos */
+        gap: 1rem;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .header nav {
+        padding-right: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+/* Telefonos pequenyos */
+@media (max-width: 480px) {
+    .tit strong, .tit {
+        font-size: 2.8rem !important; /* Aún más pequeño para evitar scroll horizontal */
+    }
+
+    .subtit {
+        font-size: 0.8rem !important;
+        letter-spacing: 0.3rem;
+    }
+
+    .formularios {
+        max-width: 90%; /* Que ocupe casi todo el ancho disponible */
+    }
+
+    /* Hacer que la tabla sea "scrollable" horizontalmente si es muy ancha */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        margin: 1rem;
+    }
+    
+    .pagTitus {
+        font-size: 2rem;
+    }
+}
