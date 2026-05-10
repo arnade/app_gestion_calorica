@@ -166,4 +166,12 @@ class GestorPDO {
             die("Error de la base de datos al actualizar: " . $e->getMessage());
         }
     }
+
+       public function eliminar($id) {
+        $sql="DELETE FROM REGISTERS WHERE id=:id";
+        $stmt=$this->db->prepare($sql);
+        $stmt->bindValue(':id',$id);
+        return $stmt->execute();
+    }
+
 }
