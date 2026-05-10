@@ -12,14 +12,17 @@ class NutryController
 
     public function index()
     {
-        $registros = $this->gestor->listar();
+        if (isset($_SESSION['usuario_id'])){
+            $registros = $this->gestor->listar();
+        }
+        
         include "views/landing.php";
     }
 
     public function crear()
     {
         $userId = $_SESSION["usuario_id"];
-        $user = $this->gestor->buscarUsuarioId($userId);
+        $user = $this->gestor->buscarUsuarioId($_SESSION["id"]);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $recipeText = $_POST['receta'];
@@ -67,5 +70,11 @@ class NutryController
         $listaRecetas = $this->gestor->obtenerRecetas();
 
         include "views/editar.php";
+    }
+    public function eliminar(){
+        $registroId = $_GET['id'] ?? null;
+        $this->gestor->eliminar($registroId);
+        header("Location: index.php");
+        exit;
     }
 }

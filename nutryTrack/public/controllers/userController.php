@@ -53,23 +53,20 @@ class UserController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $email = $_POST['email'];
-            
+
             $password = $_POST['password'];
             $recordar = isset($_POST['recordarme']);
+            $user = $this->gestor->buscarUsuarioPorEmail($email);
 
-            
+            if ($user && $this->auth->verifyPassword($password, $user->getPassword())) {
 
-            $user = $this -> gestor -> buscarUsuarioPorEmail($email);
-
-            if ($user && $this -> auth -> verifyPassword($password, $user -> getPassword())) {
-
-                $_SESSION['id'] = $user -> getId();
-                $_SESSION['email'] = $user -> getEmail();
-                $_SESSION['username'] = $user -> getUserName();
+                $_SESSION['id'] = $user->getId();
+                $_SESSION['email'] = $user->getEmail();
+                $_SESSION['usuario_id'] = $user->getId();
+                $_SESSION['userName'] = $user->getUserName();
 
                 if ($recordar) {
-
-                    $token = base64_encode($user -> getEmail());
+                    $token = base64_encode($user->getEmail());
 
                     setcookie(
 
@@ -81,22 +78,15 @@ class UserController {
                             'path' => '/',
                             'httponly' => true,
                             'samesite' => 'Strict'
-
                         ]
-
                     );
-
                 }
-                
                 header("Location: index.php");
                 exit;
-
             } else {
 
                 $error = "Credenciales Incorrectas.";
-
             }
-
         }
 
         include "views/login.php";

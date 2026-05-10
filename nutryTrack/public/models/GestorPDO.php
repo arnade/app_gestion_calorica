@@ -45,17 +45,22 @@ class GestorPDO {
     }
 
     public function listar(){
-        $query="SELECT * FROM REGISTERS";
-        $rtdo=$this->db->query($query);
-        $arrayRegistros=[];
-        while ($value = $rtdo->fetch(PDO::FETCH_ASSOC)){
-            $receta=$this->buscarRecetaId($value['RECIPE_ID']);
-            $usuario=$this->buscarUsuarioId($value['USER_ID']);
+        $consulta = "SELECT * FROM REGISTERS WHERE USER_ID = :user_id";
+        $stmt = $this->db->prepare($consulta);
+        $stmt->bindValue(':user_id', $_SESSION['usuario_id'], PDO::PARAM_INT);
+        $stmt->execute();
+
+        $arrayRegistros = [];
+
+        while ($value = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $receta = $this->buscarRecetaId($value['RECIPE_ID']);
+            $usuario = $this->buscarUsuarioId($value['USER_ID']);
             $registro = new Register($receta, $value['DATE'], $value['GRAMS'], $usuario, $value['ID']);
-            $arrayRegistros[]=$registro;
+            $arrayRegistros[] = $registro;
         }
+
         return $arrayRegistros;
-        }
+    }
 
     public function obtenerRecetas() {
         $query= "SELECT ID, NAME FROM RECIPES ORDER BY NAME ASC";
@@ -156,5 +161,12 @@ class GestorPDO {
         } catch (PDOException $e) {
             die("Error de la base de datos al actualizar: " . $e->getMessage());
         }
+    }
+
+    public function eliminar($id){
+        $sql= "DELETE FROM REGISTERS WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
     }
 }
