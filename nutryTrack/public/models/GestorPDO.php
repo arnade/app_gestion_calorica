@@ -8,7 +8,33 @@ class GestorPDO {
         $this->db = Connection::getInstance()->getConn();
     }
 
+<<<<<<< HEAD
    
+=======
+    public function listar(){
+
+        if (isset($_SESSION['usuario_id'])) {
+
+            $consulta = "SELECT * FROM REGISTERS WHERE USER_ID = :user_id";
+            $stmt = $this->db->prepare($consulta);
+            $stmt->bindValue(':user_id', $_SESSION['usuario_id'], PDO::PARAM_INT);
+            $stmt->execute();
+
+            $arrayRegistros = [];
+
+            while ($value = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $receta = $this->buscarRecetaId($value['RECIPE_ID']);
+                $usuario = $this->buscarUsuarioId($value['USER_ID']);
+                $registro = new Register($receta, $value['DATE'], $value['GRAMS'], $usuario, $value['ID']);
+                $arrayRegistros[] = $registro;
+            }
+
+            return $arrayRegistros;
+
+        }
+        
+    }
+>>>>>>> v1-ABF
 
     public function buscarRecetaId($id){
           $query = "SELECT * FROM RECIPES WHERE id = :id LIMIT 1";
@@ -44,6 +70,7 @@ class GestorPDO {
 
     }
 
+<<<<<<< HEAD
     public function listar(){
         $query="SELECT * FROM REGISTERS";
         $rtdo=$this->db->query($query);
@@ -57,6 +84,8 @@ class GestorPDO {
         return $arrayRegistros;
         }
 
+=======
+>>>>>>> v1-ABF
     public function obtenerRecetas() {
         $query= "SELECT ID, NAME FROM RECIPES ORDER BY NAME ASC";
         $rtdo = $this->db->query($query);
@@ -124,6 +153,45 @@ class GestorPDO {
 
         return false;
 
+    }
+
+    public function buscarRegistroId($id){
+        $sql = "SELECT * FROM REGISTERS WHERE id = :id LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $value = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($value) {
+            $receta = $this->buscarRecetaId($value['RECIPE_ID']);
+            $usuario = $this->buscarUsuarioId($value['USER_ID']);
+            return new Register($receta, $value['DATE'], $value['GRAMS'], $usuario, $value['ID']);
+        }
+
+        return false;
+    }
+
+    public function actualizar($registro) {
+        try {
+            $sql = "UPDATE REGISTERS SET RECIPE_ID = :receta_id, DATE = :fecha, GRAMS = :gramos WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':receta_id', $registro->getRecipeId());
+            $stmt->bindValue(':fecha', $registro->getDate());
+            $stmt->bindValue(':gramos', $registro->getGrams());
+            $stmt->bindValue(':id', $registro->getId(), PDO::PARAM_INT);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            die("Error de la base de datos al actualizar: " . $e->getMessage());
+        }
+    }
+
+       public function eliminar($id) {
+        $sql="DELETE FROM REGISTERS WHERE id=:id";
+        $stmt=$this->db->prepare($sql);
+        $stmt->bindValue(':id',$id);
+        return $stmt->execute();
     }
 
 }

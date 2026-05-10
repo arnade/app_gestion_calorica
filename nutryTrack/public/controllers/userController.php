@@ -56,13 +56,15 @@ class UserController {
             $password = $_POST['password'];
             $recordar = isset($_POST['recordarme']);
 
+            
+
             $user = $this -> gestor -> buscarUsuarioPorEmail($email);
 
             if ($user && $this -> auth -> verifyPassword($password, $user -> getPassword())) {
 
-                $_SESSION['id'] = $user -> getId();
-                $_SESSION['email'] = $user -> getEmail();
-                $_SESSION['username'] = $user -> getUserName();
+                $_SESSION['usuario_id'] = $user -> getId();
+                $_SESSION['usuarioEmail'] = $user -> getEmail();
+                $_SESSION['userName'] = $user -> getUserName();
 
                 if ($recordar) {
 
