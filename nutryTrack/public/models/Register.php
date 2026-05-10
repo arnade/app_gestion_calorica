@@ -9,14 +9,14 @@ class Register {
     protected $date;
     protected $grams; 
 
-    public function __construct($recipe, $date, $grams, $user = null,  $id=0){
-        
-        $this->recipe=$recipe;
-        $this->date=$date;
-        $this->grams=$grams;
-        $this->user=$user;
-        $this->id=$id;
-    }
+public function __construct($recipe, $date, $grams, $user = null, $id = 0){
+    $this->recipe = $recipe;
+    $this->date = $date;
+    $this->setGrams($grams); 
+    $this->user = $user;
+    $this->id = $id;
+}
+
 
     public function calculateProteins(){
         $totalProteins= ($this->recipe->getProteins() * $this->grams)/100 ;
@@ -84,10 +84,15 @@ class Register {
         return $this->grams;
     }
 
-    public function setGrams($grams){
+ public function setGrams($grams){
+    if ($grams < 0) {
+        $this->grams = 1;
+    } else {
         $this->grams = $grams;
-        return $this;
     }
+    return $this;
+}
+
 
     public function getUser(){
         return $this->user;
