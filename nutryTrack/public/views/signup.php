@@ -28,8 +28,8 @@
             <p>¿Ya tienes una cuenta? <a href="index.php?accion=login">Inicia sesión aquí</a></p>
             <a href="index.php">Volver al inicio</a>
         </nav>
-        <figure>
-            <img src="img/favicon.png" alt="Logo NutryTrack" class="login-image" style="width: 3rem; padding-top:3rem; opacity: 0.8;">
-       </figure>
+        
+        <img src="img/favicon.png" alt="Logo NutryTrack" class="login-image"">
+       
     </body>
 </html>

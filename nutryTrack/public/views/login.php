@@ -34,7 +34,7 @@
            <a href="index.php">Volver al inicio</a>
        </nav>
        <figure>
-            <img src="img/favicon.png" alt="Logo NutryTrack" class="login-image" style="width: 3rem; padding-top:3rem; opacity: 0.8;">
+            <img src="img/favicon.png" alt="Logo NutryTrack" class="login-image">
        </figure>
     </body>
 </html>
